@@ -104,7 +104,7 @@ class NeuralNetwork:
         return Y
 numpy.random.seed(0)
 
-nn = NeuralNetwork([5,4,4,2])
+nn = NeuralNetwork([5,4,3,2])
 
 X = numpy.array([[0,0,0,0,0], [0,0,1,0,0],
                 [0,0,0,1,0], [0,0,1, 1,0]])
@@ -112,7 +112,7 @@ X = numpy.array([[0,0,0,0,0], [0,0,1,0,0],
 y = numpy.array([[0,0],[0,1], 
                  [1,0],[1,1]])
 
-nn.fit(X, y, epochs=10000)
+nn.fit(X, y, epochs=5000)
 
 print("Final prediction")
 for s in X:

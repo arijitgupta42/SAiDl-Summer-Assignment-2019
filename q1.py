@@ -93,7 +93,7 @@ class NeuralNetwork:
         for i in range(0, len(self.weights)):
             val = self.activity(numpy.dot(val, self.weights[i]))
             val = numpy.concatenate((numpy.ones(1).T, numpy.array(val)))
-        return [val[1], val[2]]
+        return [numpy.absolute(val[1]), numpy.absolute(val[2])]
     
     
     def predict(self, X):
@@ -104,16 +104,30 @@ class NeuralNetwork:
         return Y
 numpy.random.seed(0)
 
-nn = NeuralNetwork([5,4,3,2])
+nn = NeuralNetwork([5,4,3,4,3,2])
 
-X = numpy.array([[0,0,0,0,0], [0,0,1,0,0],
-                [0,0,0,1,0], [0,0,1, 1,0]])
+X = numpy.array([[0,0,0,0,0], [0,0,1,0,0],[0,0,0,1,0], [0,0,1,1,0],
+				 [0,1,0,0,0], [0,1,1,0,0],[0,1,0,1,0], [0,1,1,1,0],
+				 [1,0,0,0,0], [1,0,1,0,0],[1,0,0,1,0], [1,0,1,1,0],
+				 [1,1,0,0,0], [1,1,1,0,0],[1,1,0,1,0], [1,1,1,1,0],
 
-y = numpy.array([[0,0],[0,1], 
-                 [1,0],[1,1]])
+				 [0,0,0,0,1], [0,0,1,0,1],[0,0,0,1,1], [0,0,1,1,1],
+				 [0,1,0,0,1], [0,1,1,0,1],[0,1,0,1,1], [0,1,1,1,1],
+				 [1,0,0,0,1], [1,0,1,0,1],[1,0,0,1,1], [1,0,1,1,1],
+				 [1,1,0,0,1], [1,1,1,0,1],[1,1,0,1,1], [1,1,1,1,1]])
 
-nn.fit(X, y, epochs=5000)
+y = numpy.array([[0,0],[0,1],[1,0],[1,1],
+				 [0,1],[0,1],[1,1],[1,0],
+				 [1,0],[1,1],[0,0],[0,1],
+				 [1,1],[1,0],[0,1],[0,0],
 
-print("Final prediction")
+				 [1,1],[1,0],[0,1],[0,0],
+				 [1,0],[1,0],[0,0],[0,1],
+				 [0,1],[0,0],[1,1],[1,0],
+				 [0,0],[0,1],[1,0],[1,1]])
+
+nn.fit(X, y, epochs=100)
+
+print("Final predictions :")
 for s in X:
-    print(s, nn.predict_data(s))
+    print(s,"==>",nn.predict_data(s))

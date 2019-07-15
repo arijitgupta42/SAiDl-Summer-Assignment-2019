@@ -125,7 +125,7 @@ y = numpy.array([[0,0],[0,1],[1,0],[1,1],
 				 [0,1],[0,0],[1,1],[1,0],
 				 [0,0],[0,1],[1,0],[1,1]])
 
-nn.fit(X, y, epochs=20000)
+nn.fit(X, y, epochs=37500)
 
 print("Final predictions :")
 i=0

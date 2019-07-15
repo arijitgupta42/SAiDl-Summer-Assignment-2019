@@ -88,7 +88,7 @@ class NeuralNetwork:
             target = labels[sample]
             self._back_prop(y, target, learning_rate)
     
-    def predict_single_data(self, x):
+    def predict_data(self, x):
         val = numpy.concatenate((numpy.ones(1).T, numpy.array(x)))
         for i in range(0, len(self.weights)):
             val = self.activity(numpy.dot(val, self.weights[i]))
@@ -116,4 +116,4 @@ nn.fit(X, y, epochs=5000)
 
 print("Final prediction")
 for s in X:
-    print(s, nn.predict_single_data(s))
+    print(s, nn.predict_data(s))

@@ -93,7 +93,7 @@ class NeuralNetwork:
         for i in range(0, len(self.weights)):
             val = self.activity(numpy.dot(val, self.weights[i]))
             val = numpy.concatenate((numpy.ones(1).T, numpy.array(val)))
-        return val[1]
+        return [val[1], val[2]]
     
     
     def predict(self, X):

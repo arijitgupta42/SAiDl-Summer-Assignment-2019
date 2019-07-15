@@ -130,5 +130,5 @@ nn.fit(X, y, epochs=20000)
 print("Final predictions :")
 i=0
 for s in X:
-	print(s,"Predicted ==>",nn.predict_data(s),"Accuracy =", 100*(1-(numpy.absolute(y[i][0]-nn.predict_data(s)[0])+numpy.absolute(y[i][0]-nn.predict_data(s)[0]))/2))
+	print(s,"Predicted ==>",nn.predict_data(s),"Accuracy =", 100*(1-(numpy.absolute(y[i][0]-nn.predict_data(s)[0])+numpy.absolute(y[i][0]-nn.predict_data(s)[0]))/2),'%')
 	i = i + 1

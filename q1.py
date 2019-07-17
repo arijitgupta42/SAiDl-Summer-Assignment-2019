@@ -26,7 +26,7 @@ class NeuralNetwork:
         
            
         for layer in range(self.layers - 1):
-            w = 2*numpy.random.rand(net_arch[layer] + 1, net_arch[layer+1])
+            w = 2*numpy.random.rand(net_arch[layer] + 1, net_arch[layer+1]) - 1
             self.weights.append(w)
 
             
@@ -105,7 +105,7 @@ class NeuralNetwork:
         return Y
 numpy.random.seed(0)
 
-nn = NeuralNetwork([5,64,32,16,2])
+nn = NeuralNetwork([5,4,3,2])
 
 X = numpy.array([[0,0,0,0,0], [0,0,1,0,0],[0,0,0,1,0], [0,0,1,1,0],
 				 [0,1,0,0,0], [0,1,1,0,0],[0,1,0,1,0], [0,1,1,1,0],
@@ -125,7 +125,7 @@ y = numpy.array([[0,0],[0,1],[1,0],[1,1],
 				 [0,1],[0,0],[1,1],[1,0],
 				 [0,0],[0,1],[1,0],[1,1]])
 
-nn.fit(X, y, epochs=37500)
+nn.fit(X, y, epochs=34500)
 
 print("Final predictions :")
 i=0

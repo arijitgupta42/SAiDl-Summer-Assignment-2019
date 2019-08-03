@@ -1,0 +1,1 @@
+Extracting names from the video file dataset and then tagging on the bais of whcih they have been classified in the original dataset. The names and respective tags are stored in a pickle compressed file and then dumped into the trainloader framewsie as a set of images. Preprocessing of all the files to be of same lenght and same dimensions is remaining.

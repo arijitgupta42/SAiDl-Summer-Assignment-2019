@@ -1,14 +1,3 @@
-"""
-PyTorch Video Dataset Class for loading videos using PyTorch
-Dataloader. This Dataset assumes that video files are Preprocessed
- by being trimmed over time and resizing the frames.
-
-Mohsen Fayyaz __ Sensifai Vision Group
-http://www.Sensifai.com
-
-If you find this code useful, please star the repository.
-"""
-
 from __future__ import print_function, division
 import cv2
 import os
@@ -20,12 +9,7 @@ from torchvision import transforms, utils
 
 
 class RandomCrop(object):
-    """Crop randomly the frames in a clip.
-
-	Args:
-		output_size (tuple or int): Desired output size. If int, square crop
-			is made.
-	"""
+    
 
     def __init__(self, output_size):
         assert isinstance(output_size, (int, tuple))
@@ -50,21 +34,20 @@ class RandomCrop(object):
 
 
 class videoDataset(Dataset):
-    """Dataset Class for Loading Video"""
-
+    
     def __init__(self, clipsListFile="D:/UCF11/fileName.pickle", rootDir="D:/UCF11/data", channels=3, timeDepth=1, xSize=176, ySize=144, mean=1, transform=None):
         """
-		Args:
-			clipsList (string): Path to the clipsList file with labels.
-			rootDir (string): Directory with all the videoes.
-			transform (callable, optional): Optional transform to be applied
-				on a sample.
-			channels: Number of channels of frames
-			timeDepth: Number of frames to be loaded in a sample
-			xSize, ySize: Dimensions of the frames
-			mean: Mean valuse of the training set videos over each channel
-		"""
-        with open(clipsListFile, "rb") as fp:   # Unpickling
+        Args:
+            clipsList (string): Path to the clipsList file with labels.
+            rootDir (string): Directory with all the videoes.
+            transform (callable, optional): Optional transform to be applied
+                on a sample.
+            channels: Number of channels of frames
+            timeDepth: Number of frames to be loaded in a sample
+            xSize, ySize: Dimensions of the frames
+            mean: Mean valuse of the training set videos over each channel
+        """
+        with open(clipsListFile, "rb") as fp:  
             clipsList = pickle.load(fp)
 
         self.clipsList = clipsList

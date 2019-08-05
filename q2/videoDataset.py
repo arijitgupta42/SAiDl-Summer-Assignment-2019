@@ -35,18 +35,8 @@ class RandomCrop(object):
 
 class videoDataset(Dataset):
     
-    def __init__(self, clipsListFile="D:/UCF11/fileName.pickle", rootDir="D:/UCF11/data", channels=3, timeDepth=1, xSize=176, ySize=144, mean=1, transform=None):
-        """
-        Args:
-            clipsList (string): Path to the clipsList file with labels.
-            rootDir (string): Directory with all the videoes.
-            transform (callable, optional): Optional transform to be applied
-                on a sample.
-            channels: Number of channels of frames
-            timeDepth: Number of frames to be loaded in a sample
-            xSize, ySize: Dimensions of the frames
-            mean: Mean valuse of the training set videos over each channel
-        """
+    def __init__(self, clipsListFile="D:/UCF11/fileName.pickle", rootDir="D:/UCF11/data", channels=3, timeDepth=1, xSize=144, ySize=176, mean=[0.485, 0.456, 0.406], transform=None):
+       
         with open(clipsListFile, "rb") as fp:  
             clipsList = pickle.load(fp)
 
@@ -64,9 +54,9 @@ class videoDataset(Dataset):
         return len(self.clipsList)
 
     def readVideo(self, videoFile):
-        # Open the video file
+  
         cap = cv2.VideoCapture(videoFile)
-        # nFrames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+
         frames = torch.FloatTensor(self.channels, self.timeDepth, self.xSize, self.ySize)
         failedClip = False
         for f in range(self.timeDepth):
@@ -74,7 +64,7 @@ class videoDataset(Dataset):
             ret, frame = cap.read()
             if ret:
                 frame = torch.from_numpy(frame)
-                # HWC2CHW
+            
                 frame = frame.permute(2, 0, 1)
                 frames[:, f, :, :] = frame
 
@@ -98,5 +88,4 @@ class videoDataset(Dataset):
 
         return sample
 
-VideoLoad = videoDataset()
-videoDataset.readVideo(VideoLoad, "D:/UCF11/data/basketball/v_shooting_01/v_shooting_01_01.avi")
+

@@ -1,10 +1,4 @@
 import numpy
-from matplotlib.colors import ListedColormap
-import matplotlib.pyplot as plt
-
-import warnings
-warnings.filterwarnings('ignore')
-
 
 def tanh(x):
     return (1.0 - numpy.exp(-2*x))/(1.0 + numpy.exp(-2*x))
@@ -125,7 +119,7 @@ y = numpy.array([[0,0],[0,1],[1,0],[1,1],
 				 [0,1],[0,0],[1,1],[1,0],
 				 [0,0],[0,1],[1,0],[1,1]])
 
-nn.fit(X, y, epochs=34500)
+nn.fit(X, y, epochs=475000)
 
 print("Final predictions :")
 accuracy=0
